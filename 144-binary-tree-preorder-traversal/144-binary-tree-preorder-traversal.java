@@ -17,21 +17,21 @@ class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
         //Morris Traversal                    Time:O(N) Space:O(N) Space should be O(1),but output list contains N elements
         List<Integer> ans=new ArrayList<>();
-        TreeNode node = root;
-        while (node != null) {
-            if (node.left == null) {
-                ans.add(node.val);
-                node = node.right;
+        TreeNode cur = root;
+        while (cur != null) {
+            if (cur.left == null) {
+                ans.add(cur.val);
+                cur = cur.right;
             }else{
-                TreeNode predecessor = node.left;
-                while ((predecessor.right != null) && (predecessor.right != node)) predecessor = predecessor.right;
-                if (predecessor.right == null) {
-                    ans.add(node.val);
-                    predecessor.right = node;
-                    node = node.left;
+                TreeNode pre = node.left;
+                while ((pre.right != null) && (pre.right != node)) pre = pre.right;
+                if (pre.right == null) {
+                    ans.add(cur.val);
+                    pre.right = cur;
+                    cur = cur.left;
                 }else{
-                    predecessor.right = null;
-                    node = node.right;
+                    pre.right = null;
+                    cur = cur.right;
                 }
             }
         }
