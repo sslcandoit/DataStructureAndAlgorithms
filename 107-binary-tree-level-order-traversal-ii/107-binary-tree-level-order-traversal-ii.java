@@ -14,7 +14,7 @@
  * }
  */
 class Solution {
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {//Time:O(N) Space:O(N)
         LinkedList<List<Integer>> ans=new LinkedList<>();
         if(root==null) return ans;
         Deque<TreeNode> queue=new ArrayDeque<>();
