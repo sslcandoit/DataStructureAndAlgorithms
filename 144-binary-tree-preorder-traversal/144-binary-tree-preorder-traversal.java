@@ -15,7 +15,7 @@
  */
 class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        //Time:O(N) Space:O(N) Space should be O(1),but output list contains N elements
+        //Morris Traversal                    Time:O(N) Space:O(N) Space should be O(1),but output list contains N elements
         List<Integer> ans=new ArrayList<>();
         TreeNode node = root;
         while (node != null) {
