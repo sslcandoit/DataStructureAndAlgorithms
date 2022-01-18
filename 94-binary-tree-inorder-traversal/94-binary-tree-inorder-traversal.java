@@ -19,10 +19,10 @@ class Solution {
         List<Integer> ans=new ArrayList<>();
         TreeNode cur = root;
         while (cur != null) {
-            if (cur.left == null) {
+            if (cur.left == null) {//No left subtree
                 ans.add(cur.val);
                 cur = cur.right; // move to next right node
-            }else{ // has a left subtree
+            }else{                //Has a left subtree
                 TreeNode pre = cur.left;
                 while (pre.right != null) { // find rightmost
                     pre = pre.right;
