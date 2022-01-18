@@ -17,14 +17,9 @@ class Solution {
     public TreeNode searchBST(TreeNode root, int val) {
         if(root==null) return root;
         
-        Deque<TreeNode> queue=new ArrayDeque<>();
-        queue.addLast(root);
-        while(!queue.isEmpty()){
-            TreeNode cur=queue.pollFirst();
-            if(cur.val==val) return cur;
-            if(cur.left!=null) queue.addLast(cur.left);
-            if(cur.right!=null) queue.addLast(cur.right);
-        }
-        return null;
+        if(root.val==val) return root;
+            
+        if(val<root.val) return searchBST(root.left, val);
+        return searchBST(root.right, val);
     }
 }
