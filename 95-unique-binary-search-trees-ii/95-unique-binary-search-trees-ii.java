@@ -19,19 +19,18 @@ class Solution {
         return helper(1, n);
     }
     private List<TreeNode> helper(int start, int end){
-        
         List<TreeNode> list=new ArrayList<>();
         if(start>end){
             list.add(null);
             return list;
         } 
-        for(int i=start; i<=end; i++){
-            List<TreeNode> left=helper(start, i-1);
-            List<TreeNode> right=helper(i+1, end);
+        for(int root=start; root<=end; root++){
+            List<TreeNode> left=helper(start, root-1);
+            List<TreeNode> right=helper(root+1, end);
         
             for(TreeNode l:left){
                 for(TreeNode r:right){
-                    TreeNode newNode=new TreeNode(i);
+                    TreeNode newNode=new TreeNode(root);
                     newNode.left=l;
                     newNode.right=r;
                     list.add(newNode);
