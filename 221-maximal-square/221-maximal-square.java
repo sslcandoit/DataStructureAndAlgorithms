@@ -12,7 +12,7 @@ class Solution {
                     dp[j]=Math.min(Math.min(dp[j], dp[j-1]), pre)+1;
                     res=Math.max(res, dp[j]);
                 }else dp[j]=0;
-                pre=temp;
+                pre=temp;//up left corner
             }
         }
         return res*res;
