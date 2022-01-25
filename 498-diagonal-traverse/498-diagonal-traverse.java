@@ -5,7 +5,7 @@ class Solution {
         int index=0;
         
         int i, j;
-        for(int k=0; k<m+n-1; k++){
+        for(int k=0; k<m+n-1; k++){//total: m+n-1
             if(k%2==0){
                 i= k<m? k:m-1;
                 j= k<m? 0:k-(m-1);
