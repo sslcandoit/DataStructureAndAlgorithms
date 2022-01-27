@@ -22,7 +22,7 @@ class Solution {
         StringBuilder sb=new StringBuilder();
         for(int n:product){
             if(sb.length()==0 && n==0) continue;
-            sb.append(n+"");
+            sb.append(n);
         }
         return sb.length()==0? "0": sb.toString();
     }
