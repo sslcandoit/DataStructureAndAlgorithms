@@ -3,6 +3,8 @@ class Solution {
         if(n<1) return false;
         if(n==1) return true;
         
-        return (n&(n-1))==0;
+        //return (n&(n-1))==0;
+        return n%2==0 && isPowerOfTwo(n/2);
+        
     }
 }
