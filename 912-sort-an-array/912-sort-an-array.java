@@ -1,8 +1,29 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        radixSort(nums);
+        divide(nums, 0, nums.length-1);
+        //radixSort(nums);
         //shellSort(nums);
         return nums;
+    }
+    
+    public void divide(int[] nums, int l, int r){
+        if(l>=r) return;
+        int mid=l+(r-l)/2;
+        divide(nums, l, mid);
+        divide(nums, mid+1, r);
+        merge(nums, l, mid+1, r);
+    }
+    public void merge(int[] nums, int l, int mid, int r){//1245 23567
+        int[] assist=new int[r-l+1];
+        int p1=l, p2=mid;
+        for(int i=0; i<assist.length; i++){
+            if(nums[p2]<nums[p1]) assist[i]=nums[p2++];
+            else assist[i]=nums[p1++];
+            
+            while(p1>=mid && p2<=r) assist[++i]=nums[p2++];
+            while(p2>=r+1 && p1<mid) assist[++i]=nums[p1++];
+        }
+        for(int n:assist) nums[l++]=n;
     }
     public void radixSort(int[] nums){
         int mostDigits=(Math.abs(nums[0])+"").length();
