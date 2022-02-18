@@ -1,5 +1,25 @@
 class Solution {
     public int countSubstrings(String s) {
+        int m=s.length();
+        boolean[][] dp=new boolean[m][m];
+        int ans=0;
+        
+        for(int i=0; i<m; i++, ans++) dp[i][i]=true;
+        
+        for(int i=0; i+1<m; i++){
+            dp[i][i+1]=s.charAt(i)==s.charAt(i+1);
+            ans+=(dp[i][i+1])? 1:0;
+        }
+        
+        for(int len=3; len<=m; len++){
+            for(int i=0, j=i+len-1; j<m; i++, j++){
+                dp[i][j]=(s.charAt(i)==s.charAt(j) && dp[i+1][j-1]);
+                ans+=(dp[i][j])? 1:0;
+            }
+        }
+        return ans;
+    }
+        /*
         int len=s.length();
         int ans=0;
         for(int i=0; i<len; i++){
@@ -8,7 +28,7 @@ class Solution {
         }
         return ans;
     }
-        /*
+        ****************************************************************************************
         int ans=0;
         for(int i=0; i<s.length(); i++){
             ans+=checkPalindromic(s, i, i);
