@@ -1,5 +1,21 @@
 class Solution {
     public int countSubstrings(String s) {
+        int ans = 0;
+        int n = s.length();
+        boolean[][] dp = new boolean[n][n];
+        
+        for (int len = 0; len < n; len++) {
+            for (int i = 0; i+len < n; i++) {
+                int j = i + len;
+                if (s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = (i+1 >= j-1) ? true : dp[i+1][j-1];
+                    if (dp[i][j]) ans++;
+                }                
+            }
+        }
+        return ans;
+    }
+        /*
         int m=s.length();
         boolean[][] dp=new boolean[m][m];
         int ans=0;
@@ -19,7 +35,7 @@ class Solution {
         }
         return ans;
     }
-        /*
+        ****************************************************************************************
         int len=s.length();
         int ans=0;
         for(int i=0; i<len; i++){
