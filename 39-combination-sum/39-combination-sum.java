@@ -1,4 +1,21 @@
 class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>>[] dp=new List[target+1];
+        for(int i=0;i<dp.length; i++) dp[i]=new ArrayList<>();
+        dp[0].add(new ArrayList<>());
+        
+        for(int c:candidates){
+            for(int j=c; j<=target; j++){
+                for(List<Integer> temp: dp[j-c]){
+                    List<Integer> newTemp=new ArrayList<>(temp);
+                    newTemp.add(c);
+                    dp[j].add(newTemp);
+                }
+            }
+        }
+        return dp[target];
+    }
+    /*
     private List<List<Integer>> ans;
     private int[] nums;
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
@@ -19,4 +36,5 @@ class Solution {
             list.remove(list.size()-1);
         }
     }
+    */
 }
