@@ -1,4 +1,32 @@
 class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        int[] degree=new int[numCourses];
+        List<Integer>[] graph=new List[numCourses];
+        for(int[] p:prerequisites){
+            int key=p[1];
+            degree[p[0]]++;
+            if(graph[key]==null) graph[key]=new ArrayList<>();
+            graph[key].add(p[0]);
+        }
+        Queue<Integer> q=new LinkedList<>();
+        for(int i=0; i<numCourses; i++){
+            if(degree[i]==0) q.add(i);
+        }
+        while(!q.isEmpty()){
+            int v=q.poll();
+            if(graph[v] !=null){
+                for(int w:graph[v]){
+                    degree[w]--;
+                    if(degree[w]==0) q.add(w);
+                }
+            }
+        }
+        for(int i=0; i<numCourses; i++){
+            if(degree[i] !=0) return false;
+        }
+        return true; 
+    }
+    /*
     private int[] visit;
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         this.visit=new int[numCourses];
@@ -26,4 +54,5 @@ class Solution {
         visit[i]=2;//visited
         return false;
     }
+    */
 }
