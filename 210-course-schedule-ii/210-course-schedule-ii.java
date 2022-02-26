@@ -1,4 +1,35 @@
 class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        int[] degree=new int[numCourses];
+        List<Integer>[] graph=new List[numCourses];
+        for(int[] p:prerequisites){
+            int key=p[1];
+            degree[p[0]]++;
+            if(graph[key]==null) graph[key]=new ArrayList<>();
+            graph[key].add(p[0]);
+        }
+        Queue<Integer> q=new LinkedList<>();
+        for(int i=0; i<numCourses; i++){
+            if(degree[i]==0) q.add(i);
+        }
+        int[] ans=new int[numCourses];
+        int j=0;
+        while(!q.isEmpty()){
+            int v=q.poll();
+            ans[j++]=v;
+            if(graph[v] !=null){
+                for(int w:graph[v]){
+                    degree[w]--;
+                    if(degree[w]==0) q.add(w);
+                }
+            }
+        }
+        for(int i=0; i<numCourses; i++){
+            if(degree[i] !=0) return new int[]{};
+        }
+        return ans;
+    }
+    /*
     private int[] visit;
     private Stack<Integer> order;
     public int[] findOrder(int numCourses, int[][] prerequisites) {
@@ -33,4 +64,5 @@ class Solution {
         order.push(i);
         return false;
     }
+    */
 }
