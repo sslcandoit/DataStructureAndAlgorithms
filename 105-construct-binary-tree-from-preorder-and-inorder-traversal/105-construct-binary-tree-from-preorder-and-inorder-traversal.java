@@ -23,7 +23,10 @@ class Solution {
         TreeNode root = new TreeNode(preorder[preStart]);
         int inIndex = 0; 
         for (int i = inStart; i <= inEnd; i++) {//找到目前的根的值在中序遍历中是第几个
-            if (inorder[i] == root.val) inIndex = i;
+            if (inorder[i] == root.val){
+                inIndex = i;
+                break;
+            } 
         }
         root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inorder);
         root.right = helper(preStart + inIndex - inStart + 1, inIndex + 1, inEnd, preorder, inorder);
