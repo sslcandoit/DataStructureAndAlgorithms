@@ -8,24 +8,30 @@
  * }
  */
 class Solution {
-    boolean pFound = false;
-    boolean qFound = false;
+    boolean findP;
+    boolean findQ;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        TreeNode LCA = LCA(root, p, q);
-        return pFound && qFound ? LCA : null;
+        if(root==null || p==null || q==null) return null;
+        this.findP=false;
+        this.findQ=false;
+        TreeNode ans=lca(root, p, q);
+        return (findP&&findQ)? ans:null;
     }
-    public TreeNode LCA(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) return root;
-        TreeNode left = LCA(root.left, p, q);     
-        TreeNode right = LCA(root.right, p, q);
-        if (root == p) {
-            pFound = true;
+    public TreeNode lca(TreeNode root, TreeNode p, TreeNode q){
+        if(root==null) return null;
+      
+        TreeNode l=lca(root.left, p, q);
+        TreeNode r=lca(root.right, p, q);
+        
+        if(root==p){
+            findP=true;
             return root;
         }
-        if (root == q) {
-            qFound = true;
+        if(root==q){
+            findQ=true;
             return root;
         }
-        return left == null ? right : right == null ? left : root;
+        if(l !=null && r !=null) return root;
+        return l==null? r:l;
     }
 }
