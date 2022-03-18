@@ -1,5 +1,7 @@
 class Solution {
+    Map<String, List<Integer>> map=new HashMap<>();
     public List<Integer> diffWaysToCompute(String expression) {
+        if(this.map.containsKey(expression)) return this.map.get(expression);
         List<Integer> ans=new ArrayList<>();
         
         for(int i=0; i<expression.length(); i++){
@@ -17,6 +19,7 @@ class Solution {
             }
         }
         if(ans.size()==0) ans.add(Integer.parseInt(expression));
+        this.map.put(expression, ans);
         return ans;
     }
 }
