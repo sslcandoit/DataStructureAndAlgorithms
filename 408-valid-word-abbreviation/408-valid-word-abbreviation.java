@@ -9,13 +9,12 @@ class Solution {
                     else return false;
                 }
             }else{
-                if(j<n && Character.isDigit(abbr.charAt(j)) && abbr.charAt(j)-'0'==0) return false; //word:"a"  abbr="01"
+                if(j<n && abbr.charAt(j)=='0') return false; //word:"a"  abbr="01"
                 int num=0;
                 while(i<m && j<n &&Character.isDigit(abbr.charAt(j))) num=num*10+(abbr.charAt(j++)-'0');
                 i=i+num;
-            }
-            if((i>m && j<=n) || (i>=m && j<n) || (j==n && i<m)) return false; //"a" "2"      "hi"hi1"/"hi"2i"  
+            }  
         }
-        return true;
+        return i==m && j==n;////"a" "2"      "hi"hi1"/"hi"2i"
     }
 }
