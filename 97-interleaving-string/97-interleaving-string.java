@@ -1,5 +1,18 @@
 class Solution {
     public boolean isInterleave(String s1, String s2, String s3) {
+        if(s1.length()+s2.length() !=s3.length()) return false;
+        return dfs(s1, s2, s3, 0, 0, 0, new boolean[s1.length()+1][s2.length()+1]);
+    }
+    private boolean dfs(String s1, String s2, String s3, int i, int j, int k, boolean[][] invaild){
+        if(invaild[i][j]) return false;
+        if(k==s3.length()) return true;
+        boolean vaild=(i<s1.length() && s1.charAt(i)==s3.charAt(k) && dfs(s1, s2, s3, i+1, j, k+1, invaild))
+            ||(j<s2.length() && s2.charAt(j)==s3.charAt(k) && dfs(s1, s2, s3, i, j+1, k+1, invaild));
+        if(!vaild) invaild[i][j]=true;
+        return vaild;
+    }
+    /*
+    public boolean isInterleave(String s1, String s2, String s3) {
         int m=s1.length(), n=s2.length();
         if(m+n != s3.length()) return false;
         
@@ -18,4 +31,5 @@ class Solution {
         }
         return dp[m][n];
     }
+    */
 }
