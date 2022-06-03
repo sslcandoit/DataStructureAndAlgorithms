@@ -1,4 +1,18 @@
-class Node {
+class Solution {
+    public int countDistinct(String s) {
+        int len=s.length();
+        int ans=0;
+        Set<String> set=new HashSet<>();
+        
+        for(int i=1; i<=len; i++){
+            for(int j=0; j+i<=len; j++){
+                set.add(s.substring(j, j+i));
+            }
+        }
+        return set.size();
+    }
+}
+/*class Node {
     Node[] children = new Node[26];
 }
 
@@ -19,3 +33,4 @@ class Solution {
         return res;
     }
 }
+*/
