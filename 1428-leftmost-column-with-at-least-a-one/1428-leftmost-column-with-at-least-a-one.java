@@ -12,6 +12,20 @@ class Solution {
         List<Integer> list=binaryMatrix.dimensions();
         int m=list.get(0), n=list.get(1);
         
+        int row=0, col=n-1, ans=-1;
+        while(row<m && col>=0){
+            if(binaryMatrix.get(row, col)==1){
+                ans=col;
+                col--;
+            }else row++;
+        }
+        return ans;
+    }
+    /*
+    public int leftMostColumnWithOne(BinaryMatrix binaryMatrix) {
+        List<Integer> list=binaryMatrix.dimensions();
+        int m=list.get(0), n=list.get(1);
+        
         int left=0, right=n, ans=-1;
         for(int row=0; row<m; row++){
             while(left<right){
@@ -30,4 +44,5 @@ class Solution {
         }
         return false;
     }
+    */
 }
