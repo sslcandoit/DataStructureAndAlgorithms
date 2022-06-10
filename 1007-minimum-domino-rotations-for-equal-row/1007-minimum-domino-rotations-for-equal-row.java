@@ -1,6 +1,19 @@
 class Solution {
     public int minDominoRotations(int[] tops, int[] bottoms) {
         int n=tops.length;
+        HashSet<Integer> set=new HashSet<>(Arrays.asList(1,2,3,4,5,6));
+        int[] t=new int[7], b=new int[7];
+        for(int i=0; i<n; i++){
+            set.retainAll(new HashSet<>(Arrays.asList(tops[i], bottoms[i])));
+            t[tops[i]]++;
+            b[bottoms[i]]++;
+        }
+        for(int s:set) return n-Math.max(t[s], b[s]);
+        return -1;
+    }
+    /*
+    public int minDominoRotations(int[] tops, int[] bottoms) {
+        int n=tops.length;
         int[] t=new int[7], b=new int[7], same=new int[7];
         for(int i=0; i<n; i++){
             t[tops[i]]++;
@@ -11,7 +24,7 @@ class Solution {
             if(t[i]+b[i]-same[i]==n) return n-Math.max(t[i], b[i]);
         }
         return -1;
-    }/*
+    }
     public int minDominoRotations(int[] tops, int[] bottoms) {
         int n=tops.length;
         for(int i=0, t=0, b=0; tops[i]==tops[0] || bottoms[i]==tops[0]; i++){
