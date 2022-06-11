@@ -1,24 +1,19 @@
 class Solution {
-     private HashMap<Integer, List<Integer>> indices;
-    private Random rand;
+    Map<Integer, List<Integer>> map;
+    Random rd;
     
     public Solution(int[] nums) {
-        this.rand = new Random();
-        this.indices = new HashMap<Integer, List<Integer>>();
-        int l = nums.length;
-        for (int i = 0; i < l; ++i) {
-            if (!this.indices.containsKey(nums[i])) {
-                this.indices.put(nums[i], new ArrayList<>());
-            }
-            this.indices.get(nums[i]).add(i);
+        this.map=new HashMap<>();
+        this.rd=new Random();
+        for(int i=0; i<nums.length; i++){
+            if(!map.containsKey(nums[i])) map.put(nums[i], new ArrayList<>());
+            map.get(nums[i]).add(i);
         }
     }
     
     public int pick(int target) {
-        int l = indices.get(target).size();
-        // pick an index at random
-        int randomIndex = indices.get(target).get(rand.nextInt(l));
-        return randomIndex;
+        List<Integer> list=map.get(target);
+        return list.get(this.rd.nextInt(list.size()));
     }
     /*
     int[] nums;
