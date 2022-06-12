@@ -1,5 +1,9 @@
 class Solution {
     public List<Boolean> camelMatch(String[] queries, String pattern) {
+        String newPattern = "[a-z]*" + String.join("[a-z]*", pattern.split("")) + "[a-z]*";
+        return Arrays.stream(queries).map(q -> q.matches(newPattern)).collect(Collectors.toList());
+    }
+        /*
         List<Boolean> ans=new ArrayList<>();
         
         for(String q:queries){
@@ -14,5 +18,6 @@ class Solution {
             else if(c<'a') return false;
         }
         return i==pattern.length();
-    }
+    }    */
 }
+//return Arrays.stream(queries).map(q -> q.matches("[a-z]*" + String.join("[a-z]*", pattern.split("")) + "[a-z]*")).collect(Collectors.toList());
