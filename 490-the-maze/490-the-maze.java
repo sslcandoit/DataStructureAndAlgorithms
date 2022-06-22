@@ -8,6 +8,7 @@ class Solution {
         
         while(!q.isEmpty()){
             int[] cur=q.poll();
+            if(visited.contains(cur[0]*n+cur[1])) continue;
             visited.add(cur[0]*n+cur[1]);
             if(cur[0]==destination[0] && cur[1]==destination[1]) return true;
             
