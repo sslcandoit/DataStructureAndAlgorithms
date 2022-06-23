@@ -1,5 +1,14 @@
 class Solution {
     public boolean isStrobogrammatic(String num) {
+        int l=0, r=num.length()-1;
+        while(l<=r){
+            String s=""+num.charAt(l)+num.charAt(r);
+            if(!"00 11 88 69 96".contains(s)) return false;
+            l++;
+            r--;
+        }
+        return true;
+        /*
         Map<Character, Character> map=new HashMap<>();
         map.put('6', '9');
         map.put('9', '6');
@@ -14,5 +23,6 @@ class Solution {
             r--;
         }
         return true;
+        */
     }
 }
