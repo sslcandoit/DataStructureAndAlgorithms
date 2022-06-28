@@ -17,7 +17,7 @@ class Solution {
     long res = 0, total = 0, sub;
     public int maxProduct(TreeNode root) {
         total = s(root); s(root);
-        return (int)(res % (int)(1e9 + 7));
+        return (int)(res % (1e9 + 7));
     }
 
     private long s(TreeNode root) {
