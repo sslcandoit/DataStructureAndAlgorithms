@@ -1,5 +1,13 @@
 class ParkingSystem {
     int[] park;
+    public ParkingSystem(int big, int medium, int small) {
+        this.park=new int[]{0, big, medium, small};
+    }
+    public boolean addCar(int carType) {
+        return this.park[carType]-- >0;
+    }
+    /*
+    int[] park;
     int[] size;
     public ParkingSystem(int big, int medium, int small) {
         this.park=new int[4];
@@ -13,6 +21,7 @@ class ParkingSystem {
         }
         return false;
     }
+    */
 }
 
 /**
