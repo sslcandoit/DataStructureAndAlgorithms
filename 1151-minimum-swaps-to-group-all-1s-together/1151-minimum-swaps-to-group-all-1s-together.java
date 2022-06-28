@@ -1,11 +1,14 @@
 class Solution {
     public int minSwaps(int[] data) {
-        int maxWin = 0, width = Arrays.stream(data).sum(); // count the number of 1's in data.
-        for (int l = -1, r = 0, cntWin = 0; r < data.length; ++r) {
-            cntWin += data[r];
-            if (r - l > width) { cntWin -= data[++l]; } // wider than width, shrink the lower bound to maintain its width.
-            maxWin = Math.max(cntWin, maxWin);
+        int countOnes=Arrays.stream(data).sum();
+        int remain=Integer.MAX_VALUE;
+        
+        int sum=0;
+        for(int l=0, r=0; r<data.length; r++){
+            sum+=data[r];
+            if(r-l==countOnes) sum-=data[l++];
+            remain=Math.min(remain, countOnes-sum);
         }
-        return width - maxWin;
+        return remain;
     }
 }
