@@ -1,5 +1,15 @@
 class Solution {
     public int minimumDeletions(String s) {
+        int cnt = 0;
+        Stack<Character> stack=new Stack<>();
+        for(char c:s.toCharArray()){
+            if(!stack.isEmpty() && stack.peek()=='b' && c=='a'){
+                stack.pop();
+                cnt++;
+            }else stack.push(c);
+        }
+        return cnt;
+        /*
         int a_right=s.chars().map(c -> c=='a'? 1:0).sum();
         int m=s.length(), b_left=0;
         int ans=a_right;
