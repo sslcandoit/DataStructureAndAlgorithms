@@ -1,22 +1,21 @@
 class Vector2D {
-    List<Integer> list;
-    int i;
+    int[][] v;
+    int i=0, j=0;
     public Vector2D(int[][] vec) {
-        this.list=new ArrayList<>();
-        for(int i=0; i<vec.length; i++){
-            for(int j=0; j<vec[i].length; j++){
-                list.add(vec[i][j]);
-            }
-        }
-        this.i=0;
+        this.v=vec;
     }
     
     public int next() {
-        return this.list.get(i++);
+        hasNext();
+        return v[i][j++];
     }
     
     public boolean hasNext() {
-        return this.i<list.size();
+        while(i<v.length && j==v[i].length){
+            i++;
+            j=0;
+        }
+        return i<v.length;
     }
 }
 
