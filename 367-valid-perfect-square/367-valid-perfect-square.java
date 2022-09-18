@@ -1,5 +1,13 @@
 class Solution {
     public boolean isPerfectSquare(int num) {
+        if(num==1) return true;
+        
+        long guess=num/2;
+        while(guess*guess>num){
+            guess=(num/guess+guess)>>1;
+        }
+        return guess*guess==num;
+        /*
         long x=num;
         
         while(x*x>num){
@@ -7,7 +15,7 @@ class Solution {
         }
         return x*x==num;
         
-        /*
+        *******************************************************
         int target=(num/2)+1;
         
         while(target>=1){
