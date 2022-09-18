@@ -10,20 +10,16 @@ class MyStack {
             q.offer(q.poll());
         }
     }
-    
     public int pop() {
         return q.poll();
     }
-    
     public int top() {
         return q.peek();
     }
-    
     public boolean empty() {
         return q.isEmpty();
     }
-}
-                                                                  /* Using 2 queues
+}                                                              /* Using 2 queues
 class MyStack {
     Queue<Integer> q1=new LinkedList<>(), q2=new LinkedList<>();
     
