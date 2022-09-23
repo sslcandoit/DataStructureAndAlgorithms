@@ -14,13 +14,10 @@ class Solution {
             return;
         }
         
-        cur+= topping[i]*2;
-        helper(topping, target, i+1, cur);
+        helper(topping, target, i+1, cur+topping[i]*2);
         
-        cur-= topping[i];
-        helper(topping, target, i+1, cur);
+        helper(topping, target, i+1, cur+topping[i]);
         
-        cur-= topping[i];
         helper(topping, target, i+1, cur);
     }
 }
